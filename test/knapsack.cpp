@@ -1,17 +1,15 @@
 #include <gtest/gtest.h>
 
-#include <knapsack/main.hpp>
+#include <knapsack/knapsack.hpp>
 
-TEST(Kanpsack, brute_force_exists)
-{
-  Kanpsack::brute_force();
+TEST(Knapsack, brute_force_exists) {
+  Knapsack knapsack;
 
   SUCCEED();
 }
 
-TEST(Kanpsack, greedy_exists)
-{
-  Kanpsack::greedy();
+TEST(Knapsack, greedy_exists) {
+  Knapsack knapsack;
 
   SUCCEED();
 }
