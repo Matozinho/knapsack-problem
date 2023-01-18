@@ -21,8 +21,13 @@ private:
   std::vector<uint32_t> weights;
 
   uint32_t total_benefit;
+  uint32_t total_weight;
+  std::vector<uint32_t> selected_items;
 
   Knapsack* brute_force();
+  std::tuple<uint32_t, uint32_t> recursive(uint32_t n, uint32_t w, std::vector<uint32_t> weights,
+                                           std::vector<uint32_t> values, uint32_t currentItem,
+                                           uint32_t currentWeight);
   Knapsack* greedy();
 
 public:
@@ -34,6 +39,16 @@ public:
     std::vector<uint32_t> benefits;
     std::vector<uint32_t> weights;
   };
+
+  // params getters
+  uint32_t get_capacity() const { return this->capacity; }
+  std::vector<uint32_t> get_benefits() const { return this->benefits; }
+  std::vector<uint32_t> get_weights() const { return this->weights; }
+
+  // solution getters
+  uint32_t get_total_benefit() const { return this->total_benefit; }
+  uint32_t get_total_weight() const { return this->total_weight; }
+  std::vector<uint32_t> get_selected_items() const { return this->selected_items; }
 
   Knapsack() = default;
   ~Knapsack() = default;
