@@ -22,6 +22,8 @@ namespace utils::assets {
       std::smatch match;
       std::regex_search(name, match, re);
 
+      if (match.empty()) continue;
+
       // Convert the number to int32_t and add it to the vector
       int32_t size = std::stoi(match[0]);
       sizes.push_back(size);
