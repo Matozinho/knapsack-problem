@@ -40,12 +40,44 @@ std::tuple<uint32_t, uint32_t> Knapsack::recursive(uint32_t n, uint32_t w,
                                 : std::make_tuple(weight2, benefit2);
 }
 
-Knapsack* Knapsack::brute_force() {
-  auto [totalWeight, totalBenefit]
-      = this->recursive(this->benefits.size(), this->capacity, this->weights, this->benefits, 0, 0);
+Knapsack* Knapsack::iterative() {
+  uint32_t n = weights.size();
 
-  this->total_benefit = totalBenefit;
-  this->total_weight = totalWeight;
+  uint32_t bestValue = 0;
+  uint32_t bestWeight = 0;
+
+  for (uint32_t i = 0; i < std::pow(2, n); i++) {
+    uint32_t currentWeight = 0;
+    uint32_t currentValue = 0;
+
+    for (uint32_t j = 0; j < n; j++) {
+      if (i & (1 << j)) {
+        currentWeight += this->weights[j];
+        currentValue += this->benefits[j];
+      }
+    }
+
+    if ((currentValue > bestValue) && (currentWeight <= this->capacity)) {
+      bestValue = currentValue;
+      bestWeight = currentWeight;
+    }
+  }
+
+  this->total_benefit = bestValue;
+  this->total_weight = bestWeight;
+
+  return this;
+}
+
+Knapsack* Knapsack::brute_force() {
+  /// uncomment it for recursive solution
+  // auto [totalWeight, totalBenefit]
+  //     = this->recursive(this->benefits.size(), this->capacity, this->weights, this->benefits, 0, 0);
+
+  // this->total_benefit = totalBenefit;
+  // this->total_weight = totalWeight;
+
+  this->iterative();
 
   return this;
 }

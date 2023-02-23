@@ -28,6 +28,8 @@ private:
   std::tuple<uint32_t, uint32_t> recursive(uint32_t n, uint32_t w, std::vector<uint32_t> weights,
                                            std::vector<uint32_t> values, uint32_t currentItem,
                                            uint32_t currentWeight);
+  Knapsack* iterative();
+  
   Knapsack* greedy();
 
 public:
